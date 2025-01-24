@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Header } from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { FeaturedCars } from "@/components/landing/FeaturedCars";
@@ -19,6 +20,7 @@ const Index = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+     
       <Hero />
       <HowItWorks />
       <FeaturedCars />
