@@ -7,26 +7,34 @@ const steps = [
     icon: MapPin,
     title: "Choose Location",
     description: "Select your pickup and return locations",
-    bgImage: "https://static.thenounproject.com/png/1806649-200.png",
+  
   },
   {
     icon: Calendar,
     title: "Pick Date",
     description: "Choose your rental dates and time",
-    bgImage: "https://www.shutterstock.com/image-vector/choose-date-icon-illustration-vector-260nw-2337047081.jpg",
+   
   },
   {
     icon: Car,
     title: "Select Car",
     description: "Choose from our premium selection",
-    bgImage: "https://banner2.cleanpng.com/20180204/apq/av283f6hy.webp",
+   
   },
 ];
 
 export const HowItWorks = () => {
   return (
     <section className="py-20 bg-luxury-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/placeholder.svg')] opacity-10 bg-cover bg-center" />
+
+<div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+          alt="Background"
+          className="w-full h-full object-cover opacity-5 mix-blend-overlay"
+        />
+      </div>
+      <div className="absolute inset-0 bg-cover bg-center" />
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -50,13 +58,8 @@ export const HowItWorks = () => {
               whileHover={{ scale: 1.05 }}
               className="relative rounded-xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/80 to-luxury-black" />
-              <div 
-                className="relative p-8 text-center backdrop-blur-sm border border-luxury-gold/20 rounded-xl"
-                style={{
-                  background: "rgba(17, 17, 17, 0.8)",
-                }}
-              >
+              <div className="absolute inset-0" />
+              <div className="relative p-8 text-center rounded-xl border border-gray-800 hover:border-luxury-gold transition-colors duration-300">
                 <div className="inline-block p-4 bg-luxury-gold rounded-full mb-6 shadow-lg shadow-luxury-gold/20">
                   <step.icon className="w-8 h-8 text-luxury-black" />
                 </div>

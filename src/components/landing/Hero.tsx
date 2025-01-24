@@ -22,7 +22,7 @@ export const Hero = () => {
             Premium Car Rental Service
           </span>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Experience Luxury at Its Finest
+          Drive in Style, Rent with Ease
           </h1>
           <p className="text-xl mb-8 text-gray-300">
             Discover our exclusive collection of premium vehicles for an

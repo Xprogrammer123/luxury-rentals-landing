@@ -43,9 +43,9 @@ export const Locations = () => {
           </motion.div>
           <motion.div variants={fadeInUp} className="relative">
             <img
-              src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=2070&q=80"
+              src="https://as2.ftcdn.net/v2/jpg/04/05/50/27/1000_F_405502788_2GoHAVDY9KKqSTNzuQ0DIArLIru6cphU.jpg"
               alt="Our Locations"
-              className="rounded-lg shadow-2xl"
+              className="rounded-lg shadow-2xl h-full w-full"
             />
           </motion.div>
         </div>
