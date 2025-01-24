@@ -10,6 +10,7 @@ import { LuxuryFleet } from "@/components/landing/LuxuryFleet";
 import { VIPServices } from "@/components/landing/VIPServices";
 import { Locations } from "@/components/landing/Locations";
 import { Awards } from "@/components/landing/Awards";
+import { Newsletter } from "@/components/landing/Newsletter";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <DriverBenefits />
       <Locations />
       <Awards />
+      <Newsletter />
       <Footer />
     </motion.div>
   );
