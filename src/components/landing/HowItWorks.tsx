@@ -7,19 +7,19 @@ const steps = [
     icon: MapPin,
     title: "Choose Location",
     description: "Select your pickup and return locations",
-    bgImage: "url('/placeholder.svg')",
+    bgImage: "https://static.thenounproject.com/png/1806649-200.png",
   },
   {
     icon: Calendar,
     title: "Pick Date",
     description: "Choose your rental dates and time",
-    bgImage: "url('/placeholder.svg')",
+    bgImage: "https://www.shutterstock.com/image-vector/choose-date-icon-illustration-vector-260nw-2337047081.jpg",
   },
   {
     icon: Car,
     title: "Select Car",
     description: "Choose from our premium selection",
-    bgImage: "url('/placeholder.svg')",
+    bgImage: "https://banner2.cleanpng.com/20180204/apq/av283f6hy.webp",
   },
 ];
 
