@@ -1,71 +1,83 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
-import { Award, Clock, DollarSign, Briefcase } from "lucide-react";
 
 export const DriverBenefits = () => {
-  const benefits = [
-    {
-      icon: DollarSign,
-      title: "Competitive Pay",
-      description: "Earn premium rates driving luxury vehicles",
-    },
-    {
-      icon: Clock,
-      title: "Flexible Hours",
-      description: "Choose your schedule and work-life balance",
-    },
-    {
-      icon: Award,
-      title: "Career Growth",
-      description: "Advance your career with our training programs",
-    },
-    {
-      icon: Briefcase,
-      title: "Full Benefits",
-      description: "Comprehensive health and retirement packages",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-luxury-black text-white relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+          alt="Background"
+          className="w-full h-full object-cover opacity-5 mix-blend-overlay"
+        />
+      </div>
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
       >
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={fadeInUp}>
-            <span className="text-luxury-gold uppercase tracking-wider mb-4 block">
-              Driver Benefits
-            </span>
-            <h2 className="text-4xl font-bold text-luxury-black mb-6">
-              Why Drive With Us?
-            </h2>
-            <div className="grid grid-cols-2 gap-6">
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <benefit.icon className="w-8 h-8 text-luxury-gold mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </motion.div>
-              ))}
-            </div>
+        <motion.div variants={fadeInUp} className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Driver Benefits</h2>
+          <p className="text-gray-400">
+            Discover the advantages of being a driver with us
+          </p>
+        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Flexible Hours</h3>
+            <p className="text-gray-400">
+              Work on your own schedule and enjoy the freedom of flexibility.
+            </p>
           </motion.div>
-          <motion.div variants={fadeInUp} className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2070&q=80"
-              alt="Professional Environment"
-              className="rounded-lg shadow-2xl"
-            />
-            <div className="absolute -top-6 -left-6 bg-luxury-black p-4 rounded-lg">
-              <p className="text-luxury-gold font-bold">Premium Benefits</p>
-            </div>
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Competitive Pay</h3>
+            <p className="text-gray-400">
+              Earn a competitive income with our attractive pay structure.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Supportive Community</h3>
+            <p className="text-gray-400">
+              Join a community of drivers who support and uplift each other.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Training Programs</h3>
+            <p className="text-gray-400">
+              Access training programs to enhance your skills and knowledge.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Health Benefits</h3>
+            <p className="text-gray-400">
+              Enjoy health benefits that support your well-being.
+            </p>
+          </motion.div>
+          <motion.div
+            variants={fadeInUp}
+            className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
+          >
+            <h3 className="text-xl font-semibold mb-4">Rewards Program</h3>
+            <p className="text-gray-400">
+              Participate in our rewards program and earn bonuses.
+            </p>
           </motion.div>
         </div>
       </motion.div>

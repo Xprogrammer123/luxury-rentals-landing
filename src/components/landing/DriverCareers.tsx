@@ -1,57 +1,49 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
-import { Button } from "@/components/ui/button";
 
 export const DriverCareers = () => {
   return (
-    <section className="py-20 bg-luxury-black text-white overflow-hidden">
+    <section className="py-20 bg-white relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1501854140801-50d01698950b"
+          alt="Background"
+          className="w-full h-full object-cover opacity-5"
+        />
+      </div>
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
       >
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={fadeInUp} className="relative">
-            <img
-              src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=2070&q=80"
-              alt="Professional Driver"
-              className="rounded-lg shadow-2xl"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-luxury-gold p-4 rounded-lg">
-              <p className="text-luxury-black font-bold">Join Our Elite Team</p>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeInUp}>
-            <span className="text-luxury-gold uppercase tracking-wider mb-4 block">
-              Career Opportunities
-            </span>
-            <h2 className="text-4xl font-bold mb-6">
-              Become a Professional Luxury Car Driver
-            </h2>
-            <p className="text-gray-300 mb-8">
-              Join our team of elite drivers and experience the thrill of driving
-              luxury vehicles while providing exceptional service to our
-              distinguished clients.
+        <motion.div variants={fadeInUp} className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-luxury-black mb-4">
+            Join Our Team
+          </h2>
+          <p className="text-gray-600">
+            Be a part of our luxury car rental service and drive your career forward.
+          </p>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-8">
+          <motion.div variants={fadeInUp} className="p-6 bg-white shadow-lg rounded-lg">
+            <h3 className="text-2xl font-semibold mb-4">Driver Positions</h3>
+            <p className="text-gray-600 mb-4">
+              We are looking for experienced drivers who are passionate about providing exceptional service.
             </p>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-luxury-gold rounded-full" />
-                <span>Competitive compensation package</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-luxury-gold rounded-full" />
-                <span>Flexible scheduling options</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-luxury-gold rounded-full" />
-                <span>Professional development opportunities</span>
-              </li>
-            </ul>
-            <Button className="bg-luxury-gold text-luxury-black hover:bg-white">
+            <button className="bg-luxury-gold text-luxury-black px-4 py-2 rounded-md hover:bg-white transition-colors duration-300">
               Apply Now
-            </Button>
+            </button>
+          </motion.div>
+          <motion.div variants={fadeInUp} className="p-6 bg-white shadow-lg rounded-lg">
+            <h3 className="text-2xl font-semibold mb-4">Benefits</h3>
+            <ul className="list-disc list-inside text-gray-600">
+              <li>Competitive salary</li>
+              <li>Flexible hours</li>
+              <li>Health insurance</li>
+              <li>Employee discounts</li>
+            </ul>
           </motion.div>
         </div>
       </motion.div>

@@ -3,13 +3,20 @@ import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const VIPServices = () => {
   return (
-    <section className="py-20 bg-luxury-black text-white">
+    <section className="py-20 bg-white relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1439337153520-7082a56a81f4"
+          alt="Background"
+          className="w-full h-full object-cover opacity-5"
+        />
+      </div>
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div variants={fadeInUp} className="relative order-2 md:order-1">

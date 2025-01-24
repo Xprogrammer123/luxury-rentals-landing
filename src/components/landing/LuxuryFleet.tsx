@@ -3,13 +3,20 @@ import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const LuxuryFleet = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50 relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1482938289607-e9573fc25ebb"
+          alt="Background"
+          className="w-full h-full object-cover opacity-10"
+        />
+      </div>
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div variants={fadeInUp}>

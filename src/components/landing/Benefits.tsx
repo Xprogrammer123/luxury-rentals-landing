@@ -27,13 +27,20 @@ const benefits = [
 
 export const Benefits = () => {
   return (
-    <section className="py-20 bg-luxury-black text-white">
+    <section className="py-20 bg-luxury-black text-white relative">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1472396961693-142e6e269027"
+          alt="Background"
+          className="w-full h-full object-cover opacity-5 mix-blend-overlay"
+        />
+      </div>
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="container mx-auto px-4"
+        className="container mx-auto px-4 relative z-10"
       >
         <motion.div variants={fadeInUp} className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Why Choose Us</h2>
