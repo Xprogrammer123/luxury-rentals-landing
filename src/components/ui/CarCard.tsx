@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { fadeInUp, scaleOnHover } from "@/lib/framer-animations";
 
 interface CarCardProps {
@@ -9,6 +10,8 @@ interface CarCardProps {
 }
 
 export const CarCard = ({ name, image, price, type }: CarCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       variants={fadeInUp}
@@ -29,7 +32,10 @@ export const CarCard = ({ name, image, price, type }: CarCardProps) => {
           <span className="text-sm text-gray-500">{type}</span>
           <span className="text-luxury-gold font-semibold">${price}/day</span>
         </div>
-        <button className="w-full bg-luxury-black text-white py-2 rounded-md hover:bg-luxury-gray transition-colors duration-300">
+        <button 
+          className="w-full bg-luxury-black text-white py-2 rounded-md hover:bg-luxury-gray transition-colors duration-300"
+          onClick={() => navigate(`/rental-form/1`)}
+        >
           Book Now
         </button>
       </div>
