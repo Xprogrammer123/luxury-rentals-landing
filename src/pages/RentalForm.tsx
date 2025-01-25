@@ -126,9 +126,9 @@ const RentalForm = () => {
       >
         <motion.h1
           variants={fadeInUp}
-          className="text-4xl font-bold text-center mb-12"
+          className="text-4xl font-bold text-center mb-12 text-luxury-black"
         >
-          Complete Your Rental Request
+          Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
         </motion.h1>
 
         <Card>
@@ -137,11 +137,11 @@ const RentalForm = () => {
               <img
                 src={car.image}
                 alt={car.name}
-                className="w-full h-64 object-cover rounded-lg"
+                className="w-full h-64 object-cover rounded-lg border-2 border-luxury-orange"
               />
               <div className="mt-4">
-                <h2 className="text-2xl font-bold">{car.name}</h2>
-                <p className="text-xl text-primary">${car.price}/day</p>
+                <h2 className="text-2xl font-bold text-luxury-black">{car.name}</h2>
+                <p className="text-xl text-luxury-brightOrange font-semibold">${car.price}/day</p>
               </div>
             </div>
 
@@ -205,7 +205,7 @@ const RentalForm = () => {
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-2 text-luxury-black">
                       Driver's License (Front)
                     </label>
                     <Input
@@ -213,18 +213,19 @@ const RentalForm = () => {
                       accept="image/*"
                       onChange={(e) => handleFileChange(e, setDriverLicenseFront)}
                       required
+                      className="border-luxury-orange focus:ring-luxury-brightOrange"
                     />
                     {driverLicenseFront && (
                       <img
                         src={driverLicenseFront.preview}
                         alt="Driver's License Front"
-                        className="mt-2 h-32 object-cover rounded"
+                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
                       />
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-2 text-luxury-black">
                       Driver's License (Back)
                     </label>
                     <Input
@@ -232,18 +233,19 @@ const RentalForm = () => {
                       accept="image/*"
                       onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
                       required
+                      className="border-luxury-orange focus:ring-luxury-brightOrange"
                     />
                     {driverLicenseBack && (
                       <img
                         src={driverLicenseBack.preview}
                         alt="Driver's License Back"
-                        className="mt-2 h-32 object-cover rounded"
+                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
                       />
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">
+                    <label className="block text-sm font-medium mb-2 text-luxury-black">
                       SSN Image
                     </label>
                     <Input
@@ -251,18 +253,22 @@ const RentalForm = () => {
                       accept="image/*"
                       onChange={(e) => handleFileChange(e, setSSNImage)}
                       required
+                      className="border-luxury-orange focus:ring-luxury-brightOrange"
                     />
                     {ssnImage && (
                       <img
                         src={ssnImage.preview}
                         alt="SSN"
-                        className="mt-2 h-32 object-cover rounded"
+                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
                       />
                     )}
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button 
+                  type="submit" 
+                  className="w-full bg-luxury-brightOrange hover:bg-luxury-orange transition-colors duration-300"
+                >
                   Submit Rental Request
                 </Button>
               </form>

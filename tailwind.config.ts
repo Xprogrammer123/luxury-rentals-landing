@@ -26,6 +26,8 @@ export default {
           gold: "#D4AF37",
           black: "#111111",
           gray: "#1F1F1F",
+          orange: "#FEC6A1",  // Adding soft orange
+          brightOrange: "#F97316" // Adding bright orange
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
