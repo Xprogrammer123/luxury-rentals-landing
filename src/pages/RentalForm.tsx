@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useToast } from "@/components/ui/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,8 +9,16 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
-// Move cars data to a separate file later for better organization
 const cars = [
   {
     id: "1",
@@ -50,9 +57,9 @@ interface FilePreview {
 
 const RentalForm = () => {
   const { carId } = useParams();
-  const { toast } = useToast();
   const navigate = useNavigate();
   const car = cars.find((c) => c.id === carId);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const [driverLicenseFront, setDriverLicenseFront] = useState<FilePreview | null>(null);
   const [driverLicenseBack, setDriverLicenseBack] = useState<FilePreview | null>(null);
@@ -87,22 +94,13 @@ const RentalForm = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (!driverLicenseFront || !driverLicenseBack || !ssnImage) {
-      toast({
-        title: "Missing Documents",
-        description: "Please upload all required documents",
-        variant: "destructive",
-      });
       return;
     }
 
     // Here you would typically send the data to your backend
-    // For now, we'll just show a success message
-    toast({
-      title: "Rental Request Submitted",
-      description: "We'll contact you shortly to confirm your reservation.",
-    });
+    setShowSuccessDialog(true);
 
-    // Navigate back to car selection after successful submission
+    // Navigate back to car selection after dialog is closed
     setTimeout(() => {
       navigate("/cars");
     }, 2000);
@@ -117,36 +115,37 @@ const RentalForm = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="container mx-auto px-4 max-w-3xl"
-      >
-        <motion.h1
-          variants={fadeInUp}
-          className="text-4xl font-bold text-center mb-12 text-luxury-black"
+    <>
+      <div className="min-h-screen bg-gray-50 py-12">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="container mx-auto px-4 max-w-3xl"
         >
-          Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
-        </motion.h1>
+          <motion.h1
+            variants={fadeInUp}
+            className="text-4xl font-bold text-center mb-12 text-luxury-black"
+          >
+            Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
+          </motion.h1>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="mb-8">
-              <img
-                src={car.image}
-                alt={car.name}
-                className="w-full h-64 object-cover rounded-lg border-2 border-luxury-orange"
-              />
-              <div className="mt-4">
-                <h2 className="text-2xl font-bold text-luxury-black">{car.name}</h2>
-                <p className="text-xl text-luxury-brightOrange font-semibold">${car.price}/day</p>
+          <Card>
+            <CardContent className="p-6">
+              <div className="mb-8">
+                <img
+                  src={car.image}
+                  alt={car.name}
+                  className="w-full h-64 object-cover rounded-lg border-2 border-luxury-orange"
+                />
+                <div className="mt-4">
+                  <h2 className="text-2xl font-bold text-luxury-black">{car.name}</h2>
+                  <p className="text-xl text-luxury-brightOrange font-semibold">${car.price}/day</p>
+                </div>
               </div>
-            </div>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="fullName"
@@ -265,18 +264,43 @@ const RentalForm = () => {
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full bg-luxury-brightOrange hover:bg-luxury-orange transition-colors duration-300"
-                >
-                  Submit Rental Request
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </motion.div>
-    </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-luxury-brightOrange hover:bg-luxury-orange transition-colors duration-300"
+                  >
+                    Submit Rental Request
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+
+      <AlertDialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <AlertDialogContent className="bg-white">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-2xl font-bold text-luxury-black">
+              Rental Request Submitted
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-gray-600">
+              Thank you for your rental request for the {car.name}. We'll contact you shortly to confirm your reservation.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction 
+              className="bg-luxury-brightOrange hover:bg-luxury-orange text-white"
+              onClick={() => {
+                setShowSuccessDialog(false);
+                navigate("/cars");
+              }}
+            >
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
 
