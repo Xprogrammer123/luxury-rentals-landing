@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { Newsletter } from "@/components/landing/Newsletter";
+import { Footer } from "@/components/landing/Footer";
 
 const Contact = () => {
   return (
@@ -87,6 +89,8 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
+      <Newsletter/>
+      <Footer/>
     </motion.div>
   );
 };

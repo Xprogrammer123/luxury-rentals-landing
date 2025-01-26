@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
-
+import { Newsletter } from "@/components/landing/Newsletter";
+import { Footer } from "@/components/landing/Footer";
 const About = () => {
   return (
     <motion.div
@@ -50,7 +51,10 @@ const About = () => {
           </div>
         </motion.div>
       </div>
+      <Newsletter/>
+    <Footer/>
     </motion.div>
+    
   );
 };
 

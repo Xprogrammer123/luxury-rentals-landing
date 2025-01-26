@@ -36,6 +36,8 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { useToast } from "@/components/ui/use-toast";
+import { Newsletter } from "@/components/landing/Newsletter";
+import { Footer } from "@/components/landing/Footer";
 
 interface Car {
   id: number;
@@ -275,8 +277,11 @@ const Admin = () => {
               </div>
             )}
           </main>
+    
         </div>
       </SidebarProvider>
+            <Newsletter/>
+      <Footer/>
     </div>
   );
 };
