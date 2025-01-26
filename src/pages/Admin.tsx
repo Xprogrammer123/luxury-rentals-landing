@@ -38,6 +38,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { Newsletter } from "@/components/landing/Newsletter";
 import { Footer } from "@/components/landing/Footer";
+import { BackButton } from "@/components/ui/BackButton"
 
 interface Car {
   id: number;
@@ -113,6 +114,10 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <div className="relative">
+  <BackButton className="absolute top-4 left-4" />
+</div>
+
       <SidebarProvider defaultOpen={sidebarOpen}>
         <div className="flex min-h-screen w-full">
           <Sidebar>
