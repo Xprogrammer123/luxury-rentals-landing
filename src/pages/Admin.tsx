@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plus, MessageSquare, LogOut, CarFront , Menu } from "lucide-react";
+import { Plus, MessageSquare, LogOut, CarFront , Menu , Upload } from "lucide-react";
+
 import {
   Dialog,
   DialogContent,
@@ -112,6 +113,14 @@ const Admin = () => {
     });
   };
 
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file)); // Preview selected image
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="relative">
@@ -176,61 +185,81 @@ const Admin = () => {
                 <div className="mb-6 flex justify-between items-center">
                   <h2 className="text-2xl font-semibold">Products</h2>
                   <Dialog>
-                    <DialogTrigger asChild>
-                      <Button>
-                        <Plus className="mr-2 h-4 w-4" /> Add New Car
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Add New Car</DialogTitle>
-                      </DialogHeader>
-                      <form onSubmit={handleAddCar} className="space-y-4">
-                        <div>
-                          <Label htmlFor="name">Car Name</Label>
-                          <Input id="name" name="name" required />
-                        </div>
-                        <div>
-                          <Label htmlFor="image">Image URL</Label>
-                          <Input id="image" name="image" required />
-                        </div>
-                        <div>
-                          <Label htmlFor="price">Price per Day</Label>
-                          <Input
-                            id="price"
-                            name="price"
-                            type="number"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="type">Type</Label>
-                          <Input id="type" name="type" required />
-                        </div>
-                        <div>
-                          <Label htmlFor="category">Category</Label>
-                          <Select name="category" required>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select category" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="luxury">Luxury</SelectItem>
-                              <SelectItem value="suv">SUV</SelectItem>
-                              <SelectItem value="trucks">Trucks</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <Button type="submit">Add Car</Button>
-                      </form>
-                    </DialogContent>
-                  </Dialog>
+  <DialogTrigger asChild>
+    <Button>
+      <Plus className="mr-2 h-4 w-4" /> Add New Car
+    </Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Add New Car</DialogTitle>
+    </DialogHeader>
+    <form onSubmit={handleAddCar} className="space-y-4">
+      <div>
+        <Label htmlFor="name">Car Name</Label>
+        <Input id="name" name="name" required />
+      </div>
+
+      <div>
+        <Label htmlFor="image">Upload Image</Label>
+        <label
+          htmlFor="image"
+          className="border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-gray-500"
+        >
+          {image ? (
+            <img src={image} alt="Preview" className="w-full h-40 object-cover rounded-md" />
+          ) : (
+            <div className="flex flex-col items-center">
+              <Upload className="h-12 w-12 text-gray-500" />
+              <span className="text-gray-500 mt-2">Click to upload</span>
+            </div>
+          )}
+        </label>
+        <Input
+          id="image"
+          name="image"
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(event) => {
+            const file = event.target.files[0];
+            if (file) {
+              setImage(URL.createObjectURL(file)); // Show preview
+            }
+          }}
+        />
+      </div>
+
+      <div>
+        <Label htmlFor="price">Price per Day</Label>
+        <Input id="price" name="price" type="number" required />
+      </div>
+
+      <div>
+        <Label htmlFor="category">Category</Label>
+        <Select name="category" required>
+          <SelectTrigger>
+            <SelectValue placeholder="Select category" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="luxury">Luxury</SelectItem>
+            <SelectItem value="suv">SUV</SelectItem>
+            <SelectItem value="trucks">Trucks</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button type="submit">Add Car</Button>
+    </form>
+  </DialogContent>
+</Dialog>
+
                 </div>
 
                 <Table>
                   <TableHeader>
                     <TableRow>
                       <TableHead>Name</TableHead>
-                      <TableHead>Type</TableHead>
                       <TableHead>Category</TableHead>
                       <TableHead>Price</TableHead>
                       <TableHead>Actions</TableHead>
@@ -240,7 +269,6 @@ const Admin = () => {
                     {cars.map((car) => (
                       <TableRow key={car.id}>
                         <TableCell>{car.name}</TableCell>
-                        <TableCell>{car.type}</TableCell>
                         <TableCell>{car.category}</TableCell>
                         <TableCell>${car.price}/day</TableCell>
                         <TableCell>

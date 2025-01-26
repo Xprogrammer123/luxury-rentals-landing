@@ -75,7 +75,14 @@ const RentalForm = () => {
       address: "",
     },
   });
+  const [image, setImage] = useState(null);
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file)); // Preview selected image
+    }
+  };
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setter: (value: FilePreview | null) => void
@@ -229,45 +236,67 @@ const RentalForm = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      Driver's License (Back)
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
-                      required
-                      className="border-luxury-orange focus:ring-luxury-brightOrange"
-                    />
-                    {driverLicenseBack && (
-                      <img
-                        src={driverLicenseBack.preview}
-                        alt="Driver's License Back"
-                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
-                      />
-                    )}
-                  </div>
+  <label className="block text-sm font-medium mb-2 text-luxury-black">
+    Driver's License (Back)
+  </label>
+  <label
+    htmlFor="driverLicenseBack"
+    className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
+  >
+    {driverLicenseBack ? (
+      <img
+        src={driverLicenseBack.preview}
+        alt="Driver's License Back"
+        className="w-full h-32 object-cover rounded-md"
+      />
+    ) : (
+      <div className="flex flex-col items-center">
+        <Upload className="h-12 w-12 text-luxury-orange" />
+        <span className="text-luxury-orange mt-2">Click to upload</span>
+      </div>
+    )}
+  </label>
+  <Input
+    id="driverLicenseBack"
+    type="file"
+    accept="image/*"
+    className="hidden"
+    onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
+    required
+  />
+</div>
 
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      SSN Image
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleFileChange(e, setSSNImage)}
-                      required
-                      className="border-luxury-orange focus:ring-luxury-brightOrange"
-                    />
-                    {ssnImage && (
-                      <img
-                        src={ssnImage.preview}
-                        alt="SSN"
-                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
-                      />
-                    )}
-                  </div>
-                </div>
+<div>
+  <label className="block text-sm font-medium mb-2 text-luxury-black">
+    SSN Image
+  </label>
+  <label
+    htmlFor="ssnImage"
+    className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
+  >
+    {ssnImage ? (
+      <img
+        src={ssnImage.preview}
+        alt="SSN"
+        className="w-full h-32 object-cover rounded-md"
+      />
+    ) : (
+      <div className="flex flex-col items-center">
+        <Upload className="h-12 w-12 text-luxury-orange" />
+        <span className="text-luxury-orange mt-2">Click to upload</span>
+      </div>
+    )}
+  </label>
+  <Input
+    id="ssnImage"
+    type="file"
+    accept="image/*"
+    className="hidden"
+    onChange={(e) => handleFileChange(e, setSSNImage)}
+    required
+  />
+</div>
+
 
                   <Button 
                     type="submit" 
