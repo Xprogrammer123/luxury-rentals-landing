@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plus, MessageSquare, LogOut, Car, Menu } from "lucide-react";
+import { Plus, MessageSquare, LogOut, CarFront , Menu } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -132,28 +132,31 @@ const Admin = () => {
                   <Menu className="h-6 w-6" />
                 </Button>
               </div>
-              <SidebarMenu>
-                <SidebarMenuItem>
+              <SidebarMenu className="space-y-6 px-3">
+
+                <SidebarMenuItem className="p-3 rounded-md w-full h-14 shadow-lg border border-gray-200">
                   <SidebarMenuButton
                     onClick={() => setActiveTab("products")}
                     isActive={activeTab === "products"}
                   >
-                    <Car />
-                    <span>Products</span>
+                    <CarFront className="text-xl"/>
+                    <span >Products</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-                <SidebarMenuItem>
+
+                <SidebarMenuItem className="p-3 rounded-md w-full h-14 shadow-lg border border-gray-200">
                   <SidebarMenuButton
                     onClick={() => setActiveTab("messages")}
                     isActive={activeTab === "messages"}
                   >
-                    <MessageSquare />
+                    <MessageSquare className="text-xl"/>
                     <span>Messages</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
-                <SidebarMenuItem>
+
+                <SidebarMenuItem className="p-3 rounded-md w-full h-14 shadow-lg text-red-600 border border-gray-200 ">
                   <SidebarMenuButton onClick={handleLogout}>
-                    <LogOut />
+                    <LogOut className="text-xl"/>
                     <span>Logout</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
