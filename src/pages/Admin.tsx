@@ -81,11 +81,23 @@ const Admin = () => {
       type: formData.get("type") as string,
       category: formData.get("category") as "luxury" | "suv" | "trucks",
     };
-    setCars([...cars, newCar]);
+    const updatedCars = [...cars, newCar];
+    setCars(updatedCars);
+    localStorage.setItem('cars', JSON.stringify(updatedCars));
+    toast({
+      title: "Success",
+      description: "Car added successfully",
+    });
   };
 
   const handleDeleteCar = (id: number) => {
-    setCars(cars.filter((car) => car.id !== id));
+    const updatedCars = cars.filter((car) => car.id !== id);
+    setCars(updatedCars);
+    localStorage.setItem('cars', JSON.stringify(updatedCars));
+    toast({
+      title: "Success",
+      description: "Car deleted successfully",
+    });
   };
 
   const handleLogout = () => {
