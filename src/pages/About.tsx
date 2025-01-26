@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Newsletter } from "@/components/landing/Newsletter";
 import { Footer } from "@/components/landing/Footer";
+import {BackButton } from "@/components/ui/BackButton"
 const About = () => {
   return (
     <motion.div
@@ -10,6 +11,10 @@ const About = () => {
       variants={staggerContainer}
       className="min-h-screen pt-16 bg-gray-50"
     >
+   <div className="relative">
+  <BackButton className="absolute top-4 left-4" />
+</div>
+
       <div className="container mx-auto px-4 py-16">
         <motion.div variants={fadeInUp} className="max-w-3xl mx-auto">
           <span className="text-luxury-orange uppercase tracking-wider mb-4 block">
