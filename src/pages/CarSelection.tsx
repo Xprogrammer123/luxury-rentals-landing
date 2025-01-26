@@ -21,9 +21,7 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div className="relative">
-  <BackButton className="absolute top-4 left-4" />
-</div>
+   
 
       {vehicles.map((car) => (
         <motion.div key={car.id} variants={fadeInUp}>
@@ -86,6 +84,9 @@ const CarSelection = () => {
         variants={staggerContainer}
         className="container mx-auto px-4"
       >
+           <div className="relative">
+  <BackButton className="absolute top-4 left-4" />
+</div>
         <motion.h1
           variants={fadeInUp}
           className="text-4xl font-bold text-center mb-12"
