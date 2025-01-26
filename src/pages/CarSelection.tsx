@@ -4,52 +4,18 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
+import { useEffect, useState } from "react";
 
-const cars = {
-  luxury: [
-    {
-      id: 1,
-      name: "Porsche 911 GT3",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
-      price: 299,
-      type: "Sports Car",
-    },
-    {
-      id: 2,
-      name: "Mercedes-Benz S-Class",
-      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
-      price: 249,
-      type: "Luxury Sedan",
-    },
-  ],
-  suv: [
-    {
-      id: 3,
-      name: "Range Rover Sport",
-      image: "https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=800&q=80",
-      price: 199,
-      type: "SUV",
-    },
-    {
-      id: 4,
-      name: "Jeep Grand Cherokee",
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-      price: 179,
-      type: "SUV",
-    },
-  ],
-  trucks: [
-    {
-      id: 5,
-      name: "Ford F-150 Raptor",
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
-      price: 159,
-      type: "Truck",
-    },
-  ],
-};
+interface Car {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  type: string;
+  category: "luxury" | "suv" | "trucks";
+}
 
-const CarGrid = ({ vehicles }: { vehicles: typeof cars.luxury }) => {
+const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
   const navigate = useNavigate();
 
   return (
@@ -87,6 +53,26 @@ const CarGrid = ({ vehicles }: { vehicles: typeof cars.luxury }) => {
 };
 
 const CarSelection = () => {
+  const [cars, setCars] = useState<{ luxury: Car[], suv: Car[], trucks: Car[] }>({
+    luxury: [],
+    suv: [],
+    trucks: []
+  });
+
+  useEffect(() => {
+    const storedCars = localStorage.getItem('cars');
+    if (storedCars) {
+      const parsedCars = JSON.parse(storedCars);
+      // Group cars by category
+      const groupedCars = {
+        luxury: parsedCars.filter((car: Car) => car.category === 'luxury'),
+        suv: parsedCars.filter((car: Car) => car.category === 'suv'),
+        trucks: parsedCars.filter((car: Car) => car.category === 'trucks')
+      };
+      setCars(groupedCars);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <motion.div
