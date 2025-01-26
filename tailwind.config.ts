@@ -26,8 +26,8 @@ export default {
           gold: "#D4AF37",
           black: "#111111",
           gray: "#1F1F1F",
-          orange: "#FEC6A1",  // Adding soft orange
-          brightOrange: "#F97316" // Adding bright orange
+          orange: "#FEC6A1",
+          brightOrange: "#F97316",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -48,7 +48,7 @@ export default {
       },
       keyframes: {
         "fade-in-up": {
-          "0%": { opacity: "0", transform: "translateY(10px)" }, // Reduce movement
+          "0%": { opacity: "0", transform: "translateY(5px)" }, // Reduced movement
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "fade-in": {
@@ -57,8 +57,8 @@ export default {
         },
       },
       animation: {
-        "fade-in-up": "fade-in-up 0.3s ease-out", // Reduced duration
-        "fade-in": "fade-in 0.3s ease-out",
+        "fade-in-up": "fade-in-up 0.2s ease-out", // Reduced duration
+        "fade-in": "fade-in 0.2s ease-out",
       },
     },
   },
