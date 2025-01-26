@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plus, MessageSquare, LogOut, Car } from "lucide-react";
+import { Plus, MessageSquare, LogOut, Car, Menu } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -34,6 +35,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Car {
   id: number;
@@ -64,6 +66,9 @@ const Admin = () => {
       date: "2024-02-20",
     },
   ]);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const handleAddCar = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,12 +88,31 @@ const Admin = () => {
     setCars(cars.filter((car) => car.id !== id));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn");
+    navigate("/login");
+    toast({
+      title: "Logged out successfully",
+      description: "You have been logged out of the admin dashboard",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <SidebarProvider>
+      <SidebarProvider defaultOpen={sidebarOpen}>
         <div className="flex min-h-screen w-full">
           <Sidebar>
             <SidebarContent>
+              <div className="p-4">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className="md:hidden"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </div>
               <SidebarMenu>
                 <SidebarMenuItem>
                   <SidebarMenuButton
@@ -109,7 +133,7 @@ const Admin = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
-                  <SidebarMenuButton>
+                  <SidebarMenuButton onClick={handleLogout}>
                     <LogOut />
                     <span>Logout</span>
                   </SidebarMenuButton>
