@@ -8,6 +8,7 @@ import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Upload } from "lucide-react";
 import * as z from "zod";
 import {
   AlertDialog,
@@ -18,7 +19,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
-import { BackButton } from "@/components/ui/BackButton"
+import { BackButton } from "@/components/ui/BackButton";
 
 const cars = [
   {
@@ -26,22 +27,22 @@ const cars = [
     name: "Porsche 911 GT3",
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
     price: 299,
-    category: "luxury"
+    category: "luxury",
   },
   {
     id: "2",
     name: "Range Rover Sport",
     image: "https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=800&q=80",
     price: 199,
-    category: "suv"
+    category: "suv",
   },
   {
     id: "3",
     name: "Mercedes-Benz S-Class",
     image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
     price: 249,
-    category: "luxury"
-  }
+    category: "luxury",
+  },
 ];
 
 const formSchema = z.object({
@@ -75,6 +76,7 @@ const RentalForm = () => {
       address: "",
     },
   });
+
   const [image, setImage] = useState(null);
 
   const handleImageChange = (event) => {
@@ -83,6 +85,7 @@ const RentalForm = () => {
       setImage(URL.createObjectURL(file)); // Preview selected image
     }
   };
+
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setter: (value: FilePreview | null) => void
@@ -136,8 +139,8 @@ const RentalForm = () => {
             className="text-4xl font-bold text-center mb-12 text-luxury-black"
           >
             <div className="relative">
-  <BackButton className="absolute top-4 left-4" />
-</div>
+              <BackButton className="absolute top-4 left-4" />
+            </div>
 
             Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
           </motion.h1>
@@ -158,148 +161,148 @@ const RentalForm = () => {
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
-                      <FormControl>
-                        <Input type="tel" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Current Address</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      Driver's License (Front)
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleFileChange(e, setDriverLicenseFront)}
-                      required
-                      className="border-luxury-orange focus:ring-luxury-brightOrange"
-                    />
-                    {driverLicenseFront && (
-                      <img
-                        src={driverLicenseFront.preview}
-                        alt="Driver's License Front"
-                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
-                      />
+                  <FormField
+                    control={form.control}
+                    name="fullName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Full Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
                     )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone Number</FormLabel>
+                        <FormControl>
+                          <Input type="tel" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Current Address</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-luxury-black">
+                        Driver's License (Front)
+                      </label>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, setDriverLicenseFront)}
+                        required
+                        className="border-luxury-orange focus:ring-luxury-brightOrange"
+                      />
+                      {driverLicenseFront && (
+                        <img
+                          src={driverLicenseFront.preview}
+                          alt="Driver's License Front"
+                          className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
+                        />
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-luxury-black">
+                        Driver's License (Back)
+                      </label>
+                      <label
+                        htmlFor="driverLicenseBack"
+                        className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
+                      >
+                        {driverLicenseBack ? (
+                          <img
+                            src={driverLicenseBack.preview}
+                            alt="Driver's License Back"
+                            className="w-full h-32 object-cover rounded-md"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center">
+                            <Upload className="h-12 w-12 text-luxury-orange" />
+                            <span className="text-luxury-orange mt-2">Click to upload</span>
+                          </div>
+                        )}
+                      </label>
+                      <Input
+                        id="driverLicenseBack"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-luxury-black">
+                        SSN Image
+                      </label>
+                      <label
+                        htmlFor="ssnImage"
+                        className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
+                      >
+                        {ssnImage ? (
+                          <img
+                            src={ssnImage.preview}
+                            alt="SSN"
+                            className="w-full h-32 object-cover rounded-md"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center">
+                            <Upload className="h-12 w-12 text-luxury-orange" />
+                            <span className="text-luxury-orange mt-2">Click to upload</span>
+                          </div>
+                        )}
+                      </label>
+                      <Input
+                        id="ssnImage"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handleFileChange(e, setSSNImage)}
+                        required
+                      />
+                    </div>
                   </div>
 
-                  <div>
-  <label className="block text-sm font-medium mb-2 text-luxury-black">
-    Driver's License (Back)
-  </label>
-  <label
-    htmlFor="driverLicenseBack"
-    className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
-  >
-    {driverLicenseBack ? (
-      <img
-        src={driverLicenseBack.preview}
-        alt="Driver's License Back"
-        className="w-full h-32 object-cover rounded-md"
-      />
-    ) : (
-      <div className="flex flex-col items-center">
-        <Upload className="h-12 w-12 text-luxury-orange" />
-        <span className="text-luxury-orange mt-2">Click to upload</span>
-      </div>
-    )}
-  </label>
-  <Input
-    id="driverLicenseBack"
-    type="file"
-    accept="image/*"
-    className="hidden"
-    onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
-    required
-  />
-</div>
-
-<div>
-  <label className="block text-sm font-medium mb-2 text-luxury-black">
-    SSN Image
-  </label>
-  <label
-    htmlFor="ssnImage"
-    className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
-  >
-    {ssnImage ? (
-      <img
-        src={ssnImage.preview}
-        alt="SSN"
-        className="w-full h-32 object-cover rounded-md"
-      />
-    ) : (
-      <div className="flex flex-col items-center">
-        <Upload className="h-12 w-12 text-luxury-orange" />
-        <span className="text-luxury-orange mt-2">Click to upload</span>
-      </div>
-    )}
-  </label>
-  <Input
-    id="ssnImage"
-    type="file"
-    accept="image/*"
-    className="hidden"
-    onChange={(e) => handleFileChange(e, setSSNImage)}
-    required
-  />
-</div>
-
-
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-luxury-brightOrange hover:bg-luxury-orange transition-colors duration-300"
                   >
                     Submit Rental Request
@@ -317,19 +320,17 @@ const RentalForm = () => {
             <AlertDialogTitle className="text-2xl font-bold text-luxury-black">
               Rental Request Submitted
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-gray-600">
-              Thank you for your rental request for the {car.name}. We'll contact you shortly to confirm your reservation.
+            <AlertDialogDescription className="text-lg text-luxury-black">
+              Your rental request has been successfully submitted. We will get back to you soon.
             </AlertDialogDescription>
           </AlertDialogHeader>
+
           <AlertDialogFooter>
-            <AlertDialogAction 
+            <AlertDialogAction
               className="bg-luxury-brightOrange hover:bg-luxury-orange text-white"
-              onClick={() => {
-                setShowSuccessDialog(false);
-                navigate("/cars");
-              }}
+              onClick={() => navigate("/")}
             >
-              Continue
+              Go to Homepage
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
