@@ -18,6 +18,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
+import { BackButton } from "@/components/ui/BackButton"
 
 const cars = [
   {
@@ -127,6 +128,10 @@ const RentalForm = () => {
             variants={fadeInUp}
             className="text-4xl font-bold text-center mb-12 text-luxury-black"
           >
+            <div className="relative">
+  <BackButton className="absolute top-4 left-4" />
+</div>
+
             Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
           </motion.h1>
 
