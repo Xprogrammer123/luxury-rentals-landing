@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { useEffect, useState } from "react";
+import { BackButton } from "@/components/ui/BackButton"
 
 interface Car {
   id: number;
@@ -20,6 +21,10 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="relative">
+  <BackButton className="absolute top-4 left-4" />
+</div>
+
       {vehicles.map((car) => (
         <motion.div key={car.id} variants={fadeInUp}>
           <Card className="overflow-hidden">
