@@ -1,40 +1,54 @@
 import { Link } from "react-router-dom";
-import { Car, Info, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-luxury-black">
-              Lux<span className="text-luxury-orange">Ride</span>
-            </span>
+          <Link to="/" className="flex items-center">
+            <span className="text-2xl font-bold text-luxury-black">LuxCars</span>
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               to="/cars"
-              className="flex items-center space-x-1 text-gray-600 hover:text-luxury-orange transition-colors"
+              className="text-luxury-black hover:text-luxury-orange transition-colors"
             >
-              <Car className="w-4 h-4" />
-              <span>Explore Cars</span>
+              Explore Cars
             </Link>
             <Link
               to="/about"
-              className="flex items-center space-x-1 text-gray-600 hover:text-luxury-orange transition-colors"
+              className="text-luxury-black hover:text-luxury-orange transition-colors"
             >
-              <Info className="w-4 h-4" />
-              <span>About</span>
+              About
             </Link>
             <Link
               to="/contact"
-              className="flex items-center space-x-1 text-gray-600 hover:text-luxury-orange transition-colors"
+              className="text-luxury-black hover:text-luxury-orange transition-colors"
             >
-              <Mail className="w-4 h-4" />
-              <span>Contact</span>
+              Contact
             </Link>
           </nav>
+
+          <div className="md:hidden">
+            <Button variant="ghost" size="icon">
+              <span className="sr-only">Open menu</span>
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </Button>
+          </div>
         </div>
       </div>
     </header>

@@ -8,6 +8,7 @@ import CarSelection from "./pages/CarSelection";
 import RentalForm from "./pages/RentalForm";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/rental-form/:carId" element={<RentalForm />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
