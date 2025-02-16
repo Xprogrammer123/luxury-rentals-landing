@@ -16,7 +16,7 @@ export const Awards = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={staggerContainer}
+       
         className="container mx-auto px-4"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">

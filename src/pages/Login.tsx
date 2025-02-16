@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { BackButton } from "@/components/ui/BackButton";
-import { loginUser } from "../services/authService"; // Import API function
+import { loginUser } from "@/service/authService"
 
 const Login = () => {
   const [username, setUsername] = useState("");

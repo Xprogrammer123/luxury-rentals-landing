@@ -8,7 +8,6 @@ const About = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      variants={staggerContainer}
       className="min-h-screen pt-16 bg-gray-50"
     >
    <div className="relative">
@@ -16,7 +15,7 @@ const About = () => {
 </div>
 
       <div className="container mx-auto px-4 py-16">
-        <motion.div variants={fadeInUp} className="max-w-3xl mx-auto">
+        <motion.div className="max-w-3xl mx-auto">
           <span className="text-luxury-orange uppercase tracking-wider mb-4 block">
             About Us
           </span>
