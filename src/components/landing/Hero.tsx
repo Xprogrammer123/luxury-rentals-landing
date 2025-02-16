@@ -1,16 +1,7 @@
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
-
 
 export const Hero = () => {
   return (
-    <motion.section
-      initial="hidden"
-      animate="visible"
-      variants={staggerContainer}
-      className="min-h-screen relative overflow-hidden bg-luxury-black text-white"
-    >
-      {/* Background Image */}
+    <section className="min-h-screen relative overflow-hidden bg-luxury-black text-white">
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2070&q=80"
@@ -19,13 +10,11 @@ export const Hero = () => {
         />
       </div>
 
-     
-      {/* Hero Content */}
-      <div className="container mx-auto px-4 relative z-10 h-screen flex flex-col justify-center ">
-        <motion.div variants={fadeInUp} className="max-w-3xl">
-        <span className="text-luxury-gold uppercase mb-4 inline-flex rounded-3xl bg-white/10 backdrop-blur-sm shadow-lg border border-white/10 px-4 py-2">
-  Premium Car Rental Service
-</span>
+      <div className="container mx-auto px-4 relative z-10 h-screen flex flex-col justify-center">
+        <div data-aos="fade-up" data-aos-delay="200" className="max-w-3xl">
+          <span className="text-luxury-gold uppercase mb-4 inline-flex rounded-3xl bg-white/10 backdrop-blur-sm shadow-lg border border-white/10 px-4 py-2">
+            Premium Car Rental Service
+          </span>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             Drive in Style, Rent with Ease
@@ -41,8 +30,8 @@ export const Hero = () => {
               Explore Cars
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };

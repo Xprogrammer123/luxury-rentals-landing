@@ -1,5 +1,7 @@
 
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Header } from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -13,16 +15,18 @@ import { VIPServices } from "@/components/landing/VIPServices";
 import { Locations } from "@/components/landing/Locations";
 import { Awards } from "@/components/landing/Awards";
 import { Newsletter } from "@/components/landing/Newsletter";
-import { pageTransition } from "@/lib/framer-animations";
 
 const Index = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic',
+    });
+  }, []);
+
   return (
-    <motion.div
-      variants={pageTransition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <div>
       <Header/>
       <Hero />
       <HowItWorks />
@@ -36,7 +40,7 @@ const Index = () => {
       <Awards />
       <Newsletter />
       <Footer />
-    </motion.div>
+    </div>
   );
 };
 

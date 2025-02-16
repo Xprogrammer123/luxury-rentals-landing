@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
+
 import { MapPin } from "lucide-react";
 
 export const Locations = () => {
@@ -14,15 +13,9 @@ export const Locations = () => {
 
   return (
     <section className="py-20 bg-white">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-        className="container mx-auto px-4"
-      >
+      <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={fadeInUp}>
+          <div data-aos="fade-right">
             <span className="text-luxury-gold uppercase tracking-wider mb-4 block">
               Our Locations
             </span>
@@ -40,16 +33,16 @@ export const Locations = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
-          <motion.div variants={fadeInUp} className="relative">
+          </div>
+          <div data-aos="fade-left" className="relative">
             <img
               src="https://as2.ftcdn.net/v2/jpg/04/05/50/27/1000_F_405502788_2GoHAVDY9KKqSTNzuQ0DIArLIru6cphU.jpg"
               alt="Our Locations"
               className="rounded-lg shadow-2xl h-full w-full"
             />
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

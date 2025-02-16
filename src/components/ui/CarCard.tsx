@@ -1,7 +1,5 @@
 
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { fadeInUp, scaleOnHover } from "@/lib/framer-animations";
 
 interface CarCardProps {
   name: string;
@@ -14,19 +12,19 @@ export const CarCard = ({ name, image, price, type }: CarCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <motion.div
-      variants={fadeInUp}
-      whileHover="hover"
-      className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300"
+    <div
+      data-aos="fade-up"
+      data-aos-delay="100"
+      className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105"
     >
-      <motion.div variants={scaleOnHover} className="relative aspect-[16/9]">
+      <div className="relative aspect-[16/9]">
         <img
           src={image}
           alt={name}
           className="w-full h-full object-cover"
           loading="lazy"
         />
-      </motion.div>
+      </div>
       <div className="p-6">
         <h3 className="text-2xl font-semibold text-luxury-black mb-2">{name}</h3>
         <div className="flex justify-between items-center mb-4">
@@ -40,6 +38,6 @@ export const CarCard = ({ name, image, price, type }: CarCardProps) => {
           Book Now
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 };
