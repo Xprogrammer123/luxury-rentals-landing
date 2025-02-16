@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -5,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { useEffect, useState } from "react";
-import { BackButton } from "@/components/ui/BackButton"
+import { BackButton } from "@/components/ui/BackButton";
 
 interface Car {
   id: number;
@@ -21,10 +22,13 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-   
-
       {vehicles.map((car) => (
-        <motion.div key={car.id} variants={fadeInUp}>
+        <motion.div 
+          key={car.id}
+          variants={fadeInUp}
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.2 }}
+        >
           <Card className="overflow-hidden">
             <div className="relative h-48">
               <img
@@ -66,7 +70,6 @@ const CarSelection = () => {
     const storedCars = localStorage.getItem('cars');
     if (storedCars) {
       const parsedCars = JSON.parse(storedCars);
-      // Group cars by category
       const groupedCars = {
         luxury: parsedCars.filter((car: Car) => car.category === 'luxury'),
         suv: parsedCars.filter((car: Car) => car.category === 'suv'),
@@ -84,9 +87,9 @@ const CarSelection = () => {
         variants={staggerContainer}
         className="container mx-auto px-4"
       >
-           <div className="relative">
-  <BackButton className="absolute top-4 left-4" />
-</div>
+        <div className="relative">
+          <BackButton className="absolute top-4 left-4" />
+        </div>
         <motion.h1
           variants={fadeInUp}
           className="text-4xl font-bold text-center mb-12"

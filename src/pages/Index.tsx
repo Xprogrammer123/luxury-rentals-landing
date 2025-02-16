@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Header } from "@/components/landing/Header"
 import { Hero } from "@/components/landing/Hero";
@@ -12,15 +13,17 @@ import { VIPServices } from "@/components/landing/VIPServices";
 import { Locations } from "@/components/landing/Locations";
 import { Awards } from "@/components/landing/Awards";
 import { Newsletter } from "@/components/landing/Newsletter";
+import { pageTransition } from "@/lib/framer-animations";
 
 const Index = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      variants={pageTransition}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
-     <Header/>
+      <Header/>
       <Hero />
       <HowItWorks />
       <FeaturedCars />
