@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Calendar, MapPin, Car } from "lucide-react";
@@ -7,34 +8,29 @@ const steps = [
     icon: MapPin,
     title: "Choose Location",
     description: "Select your pickup and return locations",
-  
   },
   {
     icon: Calendar,
     title: "Pick Date",
     description: "Choose your rental dates and time",
-   
   },
   {
     icon: Car,
     title: "Select Car",
     description: "Choose from our premium selection",
-   
   },
 ];
 
 export const HowItWorks = () => {
   return (
     <section className="py-20 bg-luxury-black relative overflow-hidden">
-
-<div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
           alt="Background"
           className="w-full h-full object-cover opacity-5 mix-blend-overlay"
         />
       </div>
-      <div className="absolute inset-0 bg-cover bg-center" />
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -55,10 +51,8 @@ export const HowItWorks = () => {
             <motion.div
               key={index}
               variants={fadeInUp}
-              whileHover={{ scale: 1.05 }}
               className="relative rounded-xl overflow-hidden"
             >
-              <div className="absolute inset-0" />
               <div className="relative p-8 text-center rounded-xl border border-gray-800 hover:border-luxury-gold transition-colors duration-300">
                 <div className="inline-block p-4 bg-luxury-gold rounded-full mb-6 shadow-lg shadow-luxury-gold/20">
                   <step.icon className="w-8 h-8 text-luxury-black" />
