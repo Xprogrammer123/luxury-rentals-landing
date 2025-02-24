@@ -12,13 +12,18 @@ export const DriverCareers = () => {
         />
       </div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-luxury-black mb-4">
             Join Our Team
           </h2>

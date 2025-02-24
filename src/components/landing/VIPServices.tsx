@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const VIPServices = () => {
   return (
@@ -12,10 +11,10 @@ export const VIPServices = () => {
         />
       </div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">

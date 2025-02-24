@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const DriverBenefits = () => {
   return (
@@ -12,13 +11,18 @@ export const DriverBenefits = () => {
         />
       </div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold mb-4">Driver Benefits</h2>
           <p className="text-gray-400">
             Discover the advantages of being a driver with us
@@ -26,7 +30,9 @@ export const DriverBenefits = () => {
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Flexible Hours</h3>
@@ -35,7 +41,9 @@ export const DriverBenefits = () => {
             </p>
           </motion.div>
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Competitive Pay</h3>
@@ -44,7 +52,9 @@ export const DriverBenefits = () => {
             </p>
           </motion.div>
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Supportive Community</h3>
@@ -53,7 +63,9 @@ export const DriverBenefits = () => {
             </p>
           </motion.div>
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Training Programs</h3>
@@ -62,7 +74,9 @@ export const DriverBenefits = () => {
             </p>
           </motion.div>
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Health Benefits</h3>
@@ -71,7 +85,9 @@ export const DriverBenefits = () => {
             </p>
           </motion.div>
           <motion.div
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
           >
             <h3 className="text-xl font-semibold mb-4">Rewards Program</h3>

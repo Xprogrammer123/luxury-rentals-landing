@@ -1,6 +1,5 @@
 
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Calendar, MapPin, Car } from "lucide-react";
 
 const steps = [
@@ -32,13 +31,18 @@ export const HowItWorks = () => {
         />
       </div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-white mb-4">
             How It Works
           </h2>
@@ -50,7 +54,10 @@ export const HowItWorks = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative rounded-xl overflow-hidden"
             >
               <div className="relative p-8 text-center rounded-xl border border-gray-800 hover:border-luxury-gold transition-colors duration-300">

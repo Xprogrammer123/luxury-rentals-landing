@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const LuxuryFleet = () => {
   return (
@@ -12,14 +11,18 @@ export const LuxuryFleet = () => {
         />
       </div>
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={fadeInUp}>
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <span className="text-luxury-gold uppercase tracking-wider mb-4 block">
               Luxury Fleet
             </span>
@@ -45,7 +48,12 @@ export const LuxuryFleet = () => {
               </div>
             </div>
           </motion.div>
-          <motion.div variants={fadeInUp} className="relative">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative"
+          >
             <img
               src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2070&q=80"
               alt="Luxury Fleet"

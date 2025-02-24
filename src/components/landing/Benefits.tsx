@@ -1,5 +1,5 @@
+
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Shield, Clock, Headphones, CreditCard } from "lucide-react";
 
 const benefits = [
@@ -39,10 +39,14 @@ export const Benefits = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={staggerContainer}
         className="container mx-auto px-4 relative z-10"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold mb-4">Why Choose Us</h2>
           <p className="text-gray-400">
             Experience the difference with our premium service
@@ -52,7 +56,9 @@ export const Benefits = () => {
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              variants={fadeInUp}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center p-6 border border-gray-800 rounded-lg hover:border-luxury-gold transition-colors duration-300"
             >
               <div className="inline-block p-4 bg-luxury-gray rounded-full mb-6">

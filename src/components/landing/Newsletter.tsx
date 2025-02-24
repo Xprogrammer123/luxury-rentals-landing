@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,14 +22,14 @@ export const Newsletter = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-luxury-black via-luxury-black/95 to-luxury-black" />
       
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.5 }}
         className="container mx-auto px-4 relative z-10"
       >
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div variants={fadeInUp}>
+          <motion.div>
             <div className="inline-block p-3 bg-luxury-gold/10 rounded-full mb-8">
               <Mail className="w-8 h-8 text-luxury-gold" />
             </div>
@@ -43,7 +42,6 @@ export const Newsletter = () => {
           </motion.div>
           
           <motion.form
-            variants={fadeInUp}
             onSubmit={handleSubmit}
             className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto"
           >
@@ -62,7 +60,6 @@ export const Newsletter = () => {
           </motion.form>
           
           <motion.p
-            variants={fadeInUp}
             className="mt-6 text-sm text-gray-400"
           >
             By subscribing, you agree to receive our marketing emails. You can unsubscribe at any time.
