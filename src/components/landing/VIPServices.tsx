@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 
 export const VIPServices = () => {
@@ -18,14 +19,24 @@ export const VIPServices = () => {
         className="container mx-auto px-4 relative z-10"
       >
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div variants={fadeInUp} className="relative order-2 md:order-1">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative order-2 md:order-1"
+          >
             <img
               src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=2070&q=80"
               alt="VIP Services"
               className="rounded-lg shadow-2xl"
             />
           </motion.div>
-          <motion.div variants={fadeInUp} className="order-1 md:order-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="order-1 md:order-2"
+          >
             <span className="text-luxury-gold uppercase tracking-wider mb-4 block">
               VIP Experience
             </span>

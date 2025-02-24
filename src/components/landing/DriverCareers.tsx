@@ -1,5 +1,5 @@
+
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 
 export const DriverCareers = () => {
   return (
@@ -32,7 +32,12 @@ export const DriverCareers = () => {
           </p>
         </motion.div>
         <div className="grid md:grid-cols-2 gap-8">
-          <motion.div variants={fadeInUp} className="p-6 bg-white shadow-lg rounded-lg">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 bg-white shadow-lg rounded-lg"
+          >
             <h3 className="text-2xl font-semibold mb-4">Driver Positions</h3>
             <p className="text-gray-600 mb-4">
               We are looking for experienced drivers who are passionate about providing exceptional service.
@@ -41,7 +46,12 @@ export const DriverCareers = () => {
               Apply Now
             </button>
           </motion.div>
-          <motion.div variants={fadeInUp} className="p-6 bg-white shadow-lg rounded-lg">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="p-6 bg-white shadow-lg rounded-lg"
+          >
             <h3 className="text-2xl font-semibold mb-4">Benefits</h3>
             <ul className="list-disc list-inside text-gray-600">
               <li>Competitive salary</li>
