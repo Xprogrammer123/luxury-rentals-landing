@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -112,13 +110,15 @@ const RentalForm = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         className="container mx-auto px-4 max-w-3xl"
       >
         <motion.h1
-          variants={fadeInUp}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
           className="text-4xl font-bold text-center mb-12 text-luxury-black"
         >
           <div className="relative">

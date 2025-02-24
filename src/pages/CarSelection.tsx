@@ -1,10 +1,8 @@
-
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { useEffect, useState } from "react";
 import { BackButton } from "@/components/ui/BackButton";
 
@@ -25,7 +23,9 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
       {vehicles.map((car) => (
         <motion.div 
           key={car.id}
-          variants={fadeInUp}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.2 }}
         >
@@ -82,16 +82,18 @@ const CarSelection = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
         className="container mx-auto px-4"
       >
         <div className="relative">
           <BackButton className="absolute top-4 left-4" />
         </div>
         <motion.h1
-          variants={fadeInUp}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
           className="text-4xl font-bold text-center mb-12"
         >
           Available Luxury Cars

@@ -1,6 +1,5 @@
 
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { CarCard } from "@/components/ui/CarCard";
 
 const featuredCars = [
@@ -31,13 +30,19 @@ export const FeaturedCars = () => {
   return (
     <section className="py-20 bg-gray-50">
       <motion.div
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        variants={staggerContainer}
+        transition={{ duration: 0.2 }}
         className="container mx-auto px-4"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.2 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-luxury-black mb-4">
             Featured Cars
           </h2>
@@ -47,7 +52,13 @@ export const FeaturedCars = () => {
         </motion.div>
         <div className="grid md:grid-cols-3 gap-8">
           {featuredCars.map((car, index) => (
-            <motion.div key={index} variants={fadeInUp}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.2, delay: index * 0.1 }}
+            >
               <CarCard {...car} />
             </motion.div>
           ))}
