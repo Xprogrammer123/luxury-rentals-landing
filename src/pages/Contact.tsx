@@ -1,24 +1,29 @@
+
 import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer } from "@/lib/framer-animations";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { Newsletter } from "@/components/landing/Newsletter";
 import { Footer } from "@/components/landing/Footer";
-import { BackButton } from "@/components/ui/BackButton"
+import { BackButton } from "@/components/ui/BackButton";
 
 const Contact = () => {
   return (
     <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={staggerContainer}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
       className="min-h-screen pt-16 bg-gray-50"
     >
       <div className="container mx-auto px-4 py-16">
         <div className="relative">
-  <BackButton className="absolute top-4 left-4" />
-</div>
+          <BackButton className="absolute top-4 left-4" />
+        </div>
 
-        <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className="max-w-4xl mx-auto"
+        >
           <span className="text-luxury-orange uppercase tracking-wider mb-4 block">
             Contact Us
           </span>

@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -20,14 +21,12 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {vehicles.map((car) => (
+      {vehicles.map((car, index) => (
         <motion.div 
           key={car.id}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2, delay: index * 0.1 }}
         >
           <Card className="overflow-hidden">
             <div className="relative h-48">
@@ -35,6 +34,9 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
                 src={car.image}
                 alt={car.name}
                 className="w-full h-full object-cover"
+                loading="eager"
+                decoding="sync"
+                fetchPriority="high"
               />
             </div>
             <CardContent className="p-6">
