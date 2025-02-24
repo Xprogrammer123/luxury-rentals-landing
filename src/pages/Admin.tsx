@@ -93,57 +93,57 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="relative">
-        <BackButton className="absolute top-4 left-4" />
-      </div>
+      <div className="flex h-screen overflow-hidden">
+        <AdminSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onLogout={handleLogout}
+        />
 
-      <AdminSidebar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        onLogout={handleLogout}
-      />
-
-      <main className="flex-1 p-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-luxury-black">
-            Admin Dashboard
-          </h1>
-        </div>
-
-        {activeTab === "products" && (
-          <div>
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Products</h2>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button>
-                    <Plus className="mr-2 h-4 w-4" /> Add New Car
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Add New Car</DialogTitle>
-                  </DialogHeader>
-                  <AddCarForm onSubmit={handleAddCar} />
-                </DialogContent>
-              </Dialog>
+        <main className="flex-1 overflow-y-auto">
+          <div className="p-8">
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <BackButton className="mb-4" />
+                <h1 className="text-3xl font-bold text-luxury-black">
+                  Admin Dashboard
+                </h1>
+              </div>
             </div>
-            <ProductsTable cars={cars} onDeleteCar={handleDeleteCar} />
-          </div>
-        )}
 
-        {activeTab === "messages" && (
-          <div>
-            <h2 className="text-2xl font-semibold mb-6">Messages</h2>
-            <MessagesTable messages={messages} />
-          </div>
-        )}
-      </main>
+            {activeTab === "products" && (
+              <div>
+                <div className="mb-6 flex justify-between items-center">
+                  <h2 className="text-2xl font-semibold">Products</h2>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button>
+                        <Plus className="mr-2 h-4 w-4" /> Add New Car
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Add New Car</DialogTitle>
+                      </DialogHeader>
+                      <AddCarForm onSubmit={handleAddCar} />
+                    </DialogContent>
+                  </Dialog>
+                </div>
+                <ProductsTable cars={cars} onDeleteCar={handleDeleteCar} />
+              </div>
+            )}
 
-      <Newsletter />
-      <Footer />
+            {activeTab === "messages" && (
+              <div>
+                <h2 className="text-2xl font-semibold mb-6">Messages</h2>
+                <MessagesTable messages={messages} />
+              </div>
+            )}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
