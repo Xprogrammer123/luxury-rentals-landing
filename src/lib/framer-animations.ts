@@ -4,13 +4,13 @@ import { Variants } from "framer-motion";
 export const fadeInUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 20,
+    y: 10, // Reduced distance
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.2, // Reduced from 0.5
       ease: "easeOut",
     },
   },
@@ -20,7 +20,7 @@ export const staggerContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1, // Reduced from 0.2
     },
   },
 };
@@ -33,13 +33,13 @@ export const pageTransition: Variants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.2, // Reduced from 0.5
     },
   },
   exit: {
     opacity: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.2, // Reduced from 0.3
     },
   },
 };

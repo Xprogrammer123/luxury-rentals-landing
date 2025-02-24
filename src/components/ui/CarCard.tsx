@@ -12,17 +12,15 @@ export const CarCard = ({ name, image, price, type }: CarCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      data-aos="fade-up"
-      data-aos-delay="100"
-      className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105"
-    >
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-200 hover:scale-105">
       <div className="relative aspect-[16/9]">
         <img
           src={image}
           alt={name}
           className="w-full h-full object-cover"
-          loading="lazy"
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
         />
       </div>
       <div className="p-6">
@@ -32,7 +30,7 @@ export const CarCard = ({ name, image, price, type }: CarCardProps) => {
           <span className="text-luxury-gold font-semibold">${price}/day</span>
         </div>
         <button 
-          className="w-full bg-luxury-black text-white py-2 rounded-md hover:bg-luxury-gray transition-colors duration-300"
+          className="w-full bg-luxury-black text-white py-2 rounded-md hover:bg-luxury-gray transition-colors duration-200"
           onClick={() => navigate(`/rental-form/1`)}
         >
           Book Now
