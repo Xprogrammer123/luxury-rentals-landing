@@ -1,31 +1,26 @@
-
 import api from "./api";
-
-// Demo admin credentials
-const DEMO_ADMIN = {
-  email: "admin@luxride.com",
-  password: "admin123"
-};
 
 // Login user
 export const loginUser = async (email, password) => {
   try {
-    // For demo purposes, check against hardcoded credentials
-    if (email === DEMO_ADMIN.email && password === DEMO_ADMIN.password) {
-      const demoToken = "demo-token";
-      localStorage.setItem("token", demoToken);
-      localStorage.setItem("isAdminLoggedIn", "true");
-      return { token: demoToken };
-    }
-    throw new Error("Invalid credentials");
-  } catch (error) {
-    throw error.message || "Login failed";
-  }
-};
+    // Make a POST request to the backend login endpoint
+    const response = await api.post("/admin/login/", {
+      email,
+      password,
+    });
 
-// Logout user
-export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("isAdminLoggedIn");
-  window.location.href = "/login";
+    // Extract the token from the response
+    const { access, refresh } = response.data;
+
+    // Store the token in localStorage
+    localStorage.setItem("token", access);
+    localStorage.setItem("refreshToken", refresh); // Optional: Store refresh token
+    localStorage.setItem("isAdminLoggedIn", "true");
+
+    // Return the token
+    return { token: access };
+  } catch (error) {
+    // Handle errors
+    throw new Error(error.response?.data?.detail || "Login failed");
+  }
 };

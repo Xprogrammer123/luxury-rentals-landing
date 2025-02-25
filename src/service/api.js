@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Base URL for the backend API
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000"; // Use environment variable or default
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://tpadride-py.vercel.app/api/"; // Use environment variable or default
 
 // Create an Axios instance with default settings
 const api = axios.create({

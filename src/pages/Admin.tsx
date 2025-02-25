@@ -84,6 +84,9 @@ const Admin = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("isAdminLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("refreshToken");
     navigate("/login");
     toast({
       title: "Logged out successfully",
