@@ -217,7 +217,7 @@ const RentalForm = () => {
             <p className="mb-4">Your rental request has been submitted successfully.</p>
             <button
               className="px-6 py-2 text-white bg-luxury-brightOrange rounded-lg hover:bg-luxury-orange transition"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/cars")}
             >
               Rent a Car
             </button>
