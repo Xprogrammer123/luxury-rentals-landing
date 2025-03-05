@@ -71,13 +71,7 @@ export const Header = () => {
           >
             Contact
           </Link>
-          <Link
-            to="/login"
-            className="text-luxury-black hover:text-luxury-orange transition-colors py-2"
-            onClick={() => setMenuOpen(false)}
-          >
-            AdminLog
-          </Link>
+         
           <Link
             to="/cars"
             className="bg-luxury-gold text-luxury-black px-8 py-3 rounded-md hover:bg-white transition-colors duration-300 mt-2"

@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
-
+import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
     <footer className="bg-luxury-black text-white py-12">
@@ -83,7 +83,13 @@ export const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 LuxuryCars. All rights reserved.</p>
+           <Link
+                      to="/login"
+                      className="text-luxury-black hover:text-luxury-orange transition-colors py-2"
+                     
+                    >
+                     <p>&copy; 2024 LuxuryCars. All rights reserved.</p>
+                    </Link>
         </div>
       </div>
     </footer>
