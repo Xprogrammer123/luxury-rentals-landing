@@ -29,12 +29,6 @@ export const Header = () => {
               Contact
             </Link>
             <Link
-              to="/login"
-              className="text-luxury-black hover:text-luxury-orange transition-colors"
-            >
-              AdminLog
-            </Link>
-            <Link
               to="/cars"
               className="bg-luxury-gold text-luxury-black px-8 py-3 rounded-md hover:bg-white transition-colors duration-300"
             >
