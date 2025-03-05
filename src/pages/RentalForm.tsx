@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Footer } from "@/components/landing/Footer";
+import { Newsletter } from "@/components/landing/Newsletter";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Upload } from "lucide-react";
@@ -19,6 +18,7 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { BackButton } from "@/components/ui/BackButton";
+import Confetti from "react-confetti";
 
 interface Car {
   id: number;
@@ -46,12 +46,13 @@ const RentalForm = () => {
   const navigate = useNavigate();
   const [car, setCar] = useState<Car | null>(null);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [driverLicenseFront, setDriverLicenseFront] = useState<FilePreview | null>(null);
   const [driverLicenseBack, setDriverLicenseBack] = useState<FilePreview | null>(null);
   const [ssnImage, setSSNImage] = useState<FilePreview | null>(null);
 
   useEffect(() => {
-    const storedCars = localStorage.getItem('cars');
+    const storedCars = localStorage.getItem("cars");
     if (storedCars && carId) {
       const parsedCars = JSON.parse(storedCars);
       const selectedCar = parsedCars.find((c: Car) => c.id === Number(carId));
@@ -94,22 +95,20 @@ const RentalForm = () => {
     }
 
     setShowSuccessDialog(true);
-
-    setTimeout(() => {
-      navigate("/cars");
-    }, 2000);
   };
 
   if (!car) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-xl">Car not found. Please select a car from our collection.</p>
+        <p className="text-xl">
+          Car not found. Please select a car from our collection.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 mt-10">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -125,8 +124,8 @@ const RentalForm = () => {
           <div className="relative">
             <BackButton className="absolute top-4 left-4" />
           </div>
-
-          Complete Your <span className="text-luxury-brightOrange">Rental Request</span>
+          Complete Your{" "}
+          <span className="text-luxury-brightOrange">Rental Request</span>
         </motion.h1>
 
         <Card>
@@ -141,162 +140,27 @@ const RentalForm = () => {
                 fetchPriority="high"
               />
               <div className="mt-4">
-                <h2 className="text-2xl font-bold text-luxury-black">{car.name}</h2>
-                <p className="text-xl text-luxury-brightOrange font-semibold">${car.price}/day</p>
+                <h2 className="text-2xl font-bold text-luxury-black">
+                  {car.name}
+                </h2>
+                <p className="text-xl text-luxury-brightOrange font-semibold">
+                  ${car.price}/day
+                </p>
                 <p className="text-gray-600">{car.category}</p>
               </div>
             </div>
 
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
-                      <FormControl>
-                        <Input type="tel" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Current Address</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      Driver's License (Front)
-                    </label>
-                    <Input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleFileChange(e, setDriverLicenseFront)}
-                      required
-                      className="border-luxury-orange focus:ring-luxury-brightOrange"
-                    />
-                    {driverLicenseFront && (
-                      <img
-                        src={driverLicenseFront.preview}
-                        alt="Driver's License Front"
-                        className="mt-2 h-32 object-cover rounded border-2 border-luxury-orange"
-                      />
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      Driver's License (Back)
-                    </label>
-                    <label
-                      htmlFor="driverLicenseBack"
-                      className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
-                    >
-                      {driverLicenseBack ? (
-                        <img
-                          src={driverLicenseBack.preview}
-                          alt="Driver's License Back"
-                          className="w-full h-32 object-cover rounded-md"
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center">
-                          <Upload className="h-12 w-12 text-luxury-orange" />
-                          <span className="text-luxury-orange mt-2">Click to upload</span>
-                        </div>
-                      )}
-                    </label>
-                    <Input
-                      id="driverLicenseBack"
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => handleFileChange(e, setDriverLicenseBack)}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-luxury-black">
-                      SSN Image
-                    </label>
-                    <label
-                      htmlFor="ssnImage"
-                      className="border-2 border-dashed border-luxury-orange rounded-lg flex flex-col items-center justify-center p-6 cursor-pointer hover:border-luxury-brightOrange"
-                    >
-                      {ssnImage ? (
-                        <img
-                          src={ssnImage.preview}
-                          alt="SSN"
-                          className="w-full h-32 object-cover rounded-md"
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center">
-                          <Upload className="h-12 w-12 text-luxury-orange" />
-                          <span className="text-luxury-orange mt-2">Click to upload</span>
-                        </div>
-                      )}
-                    </label>
-                    <Input
-                      id="ssnImage"
-                      type="file"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={(e) => handleFileChange(e, setSSNImage)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-luxury-brightOrange hover:bg-luxury-orange transition-colors duration-300"
-                >
-                  Submit Rental Request
-                </Button>
-              </form>
-            </Form>
+            <div className="flex flex-col items-center justify-center ">
+              <p className="mb-4 text-lg text-center font- font-bold">
+               Simply fill out the form with your details, and we'll get you on the road in no time . Provide the necessary information, and we'll handlethe rest to ensure a smooth rental experience.
+              </p>
+              <button
+                onClick={() => setShowSuccessDialog(true)}
+                className="px-6 py-2 text-white bg-luxury-brightOrange rounded-lg hover:bg-luxury-orange transition flex items-center gap-2"
+              >
+                <Upload /> Fill Out Rental Form
+              </button>
+            </div>
           </CardContent>
         </Card>
       </motion.div>
@@ -305,23 +169,66 @@ const RentalForm = () => {
         <AlertDialogContent className="bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-2xl font-bold text-luxury-black">
-              Rental Request Submitted
+              Rental Request Processing.....
             </AlertDialogTitle>
             <AlertDialogDescription className="text-lg text-luxury-black">
-              Your rental request has been successfully submitted. We will get back to you soon.
+             Click on the <span className="text-luxury-brightOrange">"Fill out Rental Form "</span> to fill necesarry information then click the <span className="text-luxury-brightOrange">"Form submitted "</span> when your from has been filled and we will get back to you as soon as possible 
             </AlertDialogDescription>
           </AlertDialogHeader>
 
           <AlertDialogFooter>
             <AlertDialogAction
               className="bg-luxury-brightOrange hover:bg-luxury-orange text-white"
-              onClick={() => navigate("/")}
+              onClick={() => window.location.href = "https://form.jotform.com/Tpadride/Tpadride-Logistics-Transport"}
             >
-              Go to Homepage
+              Fill out Rental Form
+            </AlertDialogAction>
+
+            <AlertDialogAction
+              className="bg-luxury-brightOrange border border hover:bg-luxury-orange text-white"
+              onClick={() => {
+                setShowSuccessDialog(false);
+                setShowSuccessModal(true);
+              }}
+            >
+              Form Submitted
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {showSuccessModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+          />
+          <div className="bg-white p-8 rounded-lg text-center">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-6xl text-luxury-brightOrange mb-4"
+            >
+              ✔
+            </motion.div>
+            <h2 className="text-2xl font-bold mb-4">Success!</h2>
+            <p className="mb-4">Your rental request has been submitted successfully.</p>
+            <button
+              className="px-6 py-2 text-white bg-luxury-brightOrange rounded-lg hover:bg-luxury-orange transition"
+              onClick={() => navigate("/")}
+            >
+              Rent a Car
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="mt-28">
+        <Newsletter/>
+        <Footer/>
+      </div>
     </div>
   );
 };
