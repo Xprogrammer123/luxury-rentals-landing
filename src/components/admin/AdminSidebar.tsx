@@ -1,4 +1,3 @@
-
 import { CarFront, MessageSquare, LogOut, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,23 +28,22 @@ export const AdminSidebar = ({
     <SidebarProvider defaultOpen={sidebarOpen}>
       <Sidebar>
         <SidebarContent>
-          <div className="p-4">
+          <div className="p-4 md:hidden">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="md:hidden"
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-6 text-black cursor-pointer" />
             </Button>
           </div>
-          <SidebarMenu className="space-y-6 px-3">
+          <SidebarMenu className="space-y-6 px-3 mt-4">
             <SidebarMenuItem className="p-3 rounded-md w-full h-14 shadow-lg border border-gray-200">
               <SidebarMenuButton
                 onClick={() => setActiveTab("products")}
                 isActive={activeTab === "products"}
               >
-                <CarFront className="text-xl"/>
+                <CarFront className="text-xl" />
                 <span>Products</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -55,14 +53,14 @@ export const AdminSidebar = ({
                 onClick={() => setActiveTab("messages")}
                 isActive={activeTab === "messages"}
               >
-                <MessageSquare className="text-xl"/>
+                <MessageSquare className="text-xl" />
                 <span>Messages</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
             <SidebarMenuItem className="p-3 rounded-md w-full h-14 shadow-lg text-red-600 border border-gray-200">
               <SidebarMenuButton onClick={onLogout}>
-                <LogOut className="text-xl"/>
+                <LogOut className="text-xl" />
                 <span>Logout</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
