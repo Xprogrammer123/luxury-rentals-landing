@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import {
@@ -11,21 +10,36 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { Newsletter } from "@/components/landing/Newsletter";
-import { Footer } from "@/components/landing/Footer";
 import { BackButton } from "@/components/ui/BackButton";
 import { ProductsTable } from "@/components/admin/ProductsTable";
 import { MessagesTable } from "@/components/admin/MessagesTable";
 import { AddCarForm } from "@/components/admin/AddCarForm";
+import { EditCarForm } from "@/components/admin/EditCarForm";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import {
+  fetchCars,
+  addNewCar,
+  fetchCategories,
+  editCar,
+  deleteCar,
+} from "@/service/userService";
 
 interface Car {
   id: number;
-  name: string;
+  make: string;
+  model: string;
+  year: number;
+  color: string;
+  price_per_day: string;
+  available: boolean;
+  category: {
+    id: number;
+    name: string;
+    slug: string;
+  };
   image: string;
-  price: number;
-  type: string;
-  category: "luxury" | "suv" | "trucks";
+  slug: string;
+  user: number;
 }
 
 interface Message {
@@ -36,9 +50,18 @@ interface Message {
   date: string;
 }
 
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 const Admin = () => {
-  const [activeTab, setActiveTab] = useState<"products" | "messages">("products");
+  const [activeTab, setActiveTab] = useState<"products" | "messages">(
+    "products"
+  );
   const [cars, setCars] = useState<Car[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [messages] = useState<Message[]>([
     {
       id: 1,
@@ -48,38 +71,105 @@ const Admin = () => {
       date: "2024-02-20",
     },
   ]);
+  const [editingCar, setEditingCar] = useState<Car | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const token = localStorage.getItem("token");
 
-  const handleAddCar = (e: React.FormEvent<HTMLFormElement>) => {
+  // Fetch cars and categories on mount
+  useEffect(() => {
+    if (token) {
+      fetchCars(token)
+        .then((data) => setCars(data))
+        .catch((err) =>
+          toast({
+            title: "Error fetching cars",
+            description: err,
+          })
+        );
+      fetchCategories(token)
+        .then((data) => setCategories(data))
+        .catch((err) =>
+          toast({
+            title: "Error fetching categories",
+            description: err,
+          })
+        );
+    }
+  }, [token, toast]);
+
+  const handleAddCar = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newCar = {
-      id: cars.length + 1,
-      name: formData.get("name") as string,
-      image: formData.get("image") as string,
-      price: Number(formData.get("price")),
-      type: formData.get("type") as string,
-      category: formData.get("category") as "luxury" | "suv" | "trucks",
+    const newCarData = {
+      make: formData.get("make") as string,
+      model: formData.get("model") as string,
+      year: Number(formData.get("year")),
+      color: formData.get("color") as string,
+      price_per_day: formData.get("price_per_day") as string,
+      available: true,
+      category_id: Number(formData.get("category_id")),
     };
-    const updatedCars = [...cars, newCar];
-    setCars(updatedCars);
-    localStorage.setItem('cars', JSON.stringify(updatedCars));
-    toast({
-      title: "Success",
-      description: "Car added successfully",
-    });
+
+    try {
+      if (!token) throw new Error("Not authenticated");
+      const addedCar = await addNewCar(newCarData, token);
+      setCars((prev) => [...prev, addedCar]);
+      toast({
+        title: "Success",
+        description: "Car added successfully",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   };
 
-  const handleDeleteCar = (id: number) => {
-    const updatedCars = cars.filter((car) => car.id !== id);
-    setCars(updatedCars);
-    localStorage.setItem('cars', JSON.stringify(updatedCars));
-    toast({
-      title: "Success",
-      description: "Car deleted successfully",
-    });
+  const handleDeleteCar = async (slug: string) => {
+    try {
+      if (!token) throw new Error("Not authenticated");
+      await deleteCar(slug, token);
+      setCars((prev) => prev.filter((car) => car.slug !== slug));
+      toast({
+        title: "Success",
+        description: "Car deleted successfully",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
+  };
+
+  const handleUpdateCar = async (updatedData: {
+    make: string;
+    model: string;
+    year: number;
+    color: string;
+    price_per_day: string;
+    category_id: number;
+  }) => {
+    try {
+      if (!token || !editingCar) throw new Error("Not authenticated");
+      const updatedCar = await editCar(editingCar.slug, updatedData, token);
+      setCars((prev) =>
+        prev.map((car) => (car.slug === editingCar.slug ? updatedCar : car))
+      );
+      toast({
+        title: "Success",
+        description: "Car updated successfully",
+      });
+      setEditingCar(null);
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   };
 
   const handleLogout = () => {
@@ -104,8 +194,7 @@ const Admin = () => {
           setActiveTab={setActiveTab}
           onLogout={handleLogout}
         />
-
-        <main className="flex-1 overflow-y-auto">
+        <main className="w-full">
           <div className="p-8">
             <div className="mb-8 flex items-center justify-between">
               <div>
@@ -115,7 +204,6 @@ const Admin = () => {
                 </h1>
               </div>
             </div>
-
             {activeTab === "products" && (
               <div>
                 <div className="mb-6 flex justify-between items-center">
@@ -130,14 +218,20 @@ const Admin = () => {
                       <DialogHeader>
                         <DialogTitle>Add New Car</DialogTitle>
                       </DialogHeader>
-                      <AddCarForm onSubmit={handleAddCar} />
+                      <AddCarForm
+                        onSubmit={handleAddCar}
+                        categories={categories}
+                      />
                     </DialogContent>
                   </Dialog>
                 </div>
-                <ProductsTable cars={cars} onDeleteCar={handleDeleteCar} />
+                <ProductsTable
+                  cars={cars}
+                  onDeleteCar={handleDeleteCar}
+                  onEditCar={(car) => setEditingCar(car)}
+                />
               </div>
             )}
-
             {activeTab === "messages" && (
               <div>
                 <h2 className="text-2xl font-semibold mb-6">Messages</h2>
@@ -147,6 +241,29 @@ const Admin = () => {
           </div>
         </main>
       </div>
+
+      {/* Edit Car Dialog */}
+      {editingCar && (
+        <Dialog open onOpenChange={() => setEditingCar(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Edit Car</DialogTitle>
+            </DialogHeader>
+            <EditCarForm
+              initialValues={{
+                make: editingCar.make,
+                model: editingCar.model,
+                year: editingCar.year,
+                color: editingCar.color,
+                price_per_day: editingCar.price_per_day,
+                category_id: editingCar.category.id,
+              }}
+              categories={categories}
+              onSubmit={handleUpdateCar}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };
