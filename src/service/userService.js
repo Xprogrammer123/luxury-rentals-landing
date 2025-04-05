@@ -135,3 +135,31 @@ export const deleteCategory = async (slug, token) => {
     throw error.response?.data?.message || "Failed to delete category";
   }
 };
+
+// Fetch rental requests
+export const fetchRentalRequests = async (token) => {
+  try {
+    const response = await api.get("/rental-requests/list/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Failed to fetch rental requests";
+  }
+};
+
+// get rental request
+export const getRentalRequest = async (token, slug) => {
+  try {
+    const response = await api.get(`/rental-requests/${slug}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Failed to fetch rental requests";
+  }
+};
