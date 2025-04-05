@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus } from "lucide-react";
+import { Plus, Car, MailPlus, LogOut } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -23,6 +23,7 @@ import {
   editCar,
   deleteCar,
 } from "@/service/userService";
+import { LogoutButton } from "@/components/ui/logoutButton";
 
 interface Car {
   id: number;
@@ -187,23 +188,41 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex h-screen overflow-hidden">
-        <AdminSidebar
+        {/* <AdminSidebar
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           onLogout={handleLogout}
-        />
+        /> */}
         <main className="w-full">
           <div className="p-8">
-            <div className="mb-8 flex items-center justify-between">
-              <div>
-                <BackButton className="mb-4" />
+            <div className="flex flex-col gap-4 mb-8">
+              <div className="flex items-center justify-between">
                 <h1 className="text-3xl font-bold text-luxury-black">
                   Admin Dashboard
                 </h1>
+                <LogoutButton variant="redOutline" onClick={handleLogout}>
+                  <LogOut className="mr-2" /> Logout
+                </LogoutButton>
+              </div>
+
+              <div className="flex flex-row items-start sm:items-center gap-2 sm:gap-4">
+                <Button
+                  variant={activeTab === "products" ? "default" : "outline"}
+                  onClick={() => setActiveTab("products")}
+                >
+                  <Car className="mr-2" /> Products
+                </Button>
+                <Button
+                  variant={activeTab === "messages" ? "default" : "outline"}
+                  onClick={() => setActiveTab("messages")}
+                >
+                  <MailPlus className="mr-2" /> Requests
+                </Button>
               </div>
             </div>
+
             {activeTab === "products" && (
               <div>
                 <div className="mb-6 flex justify-between items-center">
