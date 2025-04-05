@@ -26,7 +26,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Header/>
       <Hero />
       <HowItWorks />
