@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4">LuxuryCars</h3>
+            <h3 className="text-2xl font-bold mb-4">Tpadride services</h3>
             <p className="text-gray-400">
               Experience luxury and performance with our premium car rental
               service.
@@ -87,7 +87,7 @@ export const Footer = () => {
                       className="text-luxury-black hover:text-luxury-orange transition-colors py-2"
                      
                     >
-                     <p>&copy; 2024 LuxuryCars. All rights reserved.</p>
+                     <p>&copy; 2024 Tpadride services. All rights reserved.</p>
                     </Link>
         </div>
       </div>
