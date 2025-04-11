@@ -53,9 +53,8 @@ export const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <ul className="space-y-2 text-gray-400">
               <li>123 Luxury Street</li>
-              <li>New York, NY 10001</li>
-              <li>+1 (555) 123-4567</li>
-              <li>info@luxurycars.com</li>
+              <li>+1 (567) 304-5677</li>
+              <li>tpadrideservices@gmail.com</li>
             </ul>
           </div>
           <div>
