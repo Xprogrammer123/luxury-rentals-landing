@@ -31,7 +31,7 @@ const About = () => {
           </h1>
           <div className="prose prose-lg">
             <p className="text-gray-600 mb-6">
-              Welcome to LuxRide, where luxury meets convenience. We specialize in
+              Welcome to Tpadride services, where luxury meets convenience. We specialize in
               providing premium car rental services for those who appreciate the
               finer things in life.
             </p>
