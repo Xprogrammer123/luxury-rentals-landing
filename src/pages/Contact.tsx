@@ -37,14 +37,14 @@ const Contact = () => {
                   <Phone className="w-6 h-6 text-luxury-orange" />
                   <h3 className="text-xl font-bold">Phone</h3>
                 </div>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
+                <p className="text-gray-600">+1 (567) 304-567</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="flex items-center space-x-4 mb-4">
                   <Mail className="w-6 h-6 text-luxury-orange" />
                   <h3 className="text-xl font-bold">Email</h3>
                 </div>
-                <p className="text-gray-600">contact@luxride.com</p>
+                <p className="text-gray-600">tpadrideservices@gmail.com</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <div className="flex items-center space-x-4 mb-4">
