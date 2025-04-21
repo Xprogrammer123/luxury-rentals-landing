@@ -19,6 +19,7 @@ interface Category {
 
 interface Car {
   id: number;
+  slug: string;  
   name: string;
   image: string;
   price: number;
@@ -68,7 +69,7 @@ const CarGrid = ({ vehicles }: { vehicles: Car[] }) => {
             <CardFooter className="p-6 pt-0">
               <Button
                 className="w-full"
-                onClick={() => navigate(`/rental-form/${car.id}`)}
+                onClick={() => navigate(`/rental-form/${car.slug}`)}
               >
                 Rent Now
               </Button>
@@ -97,6 +98,7 @@ const CarSelection = () => {
 
         const mappedCars: Car[] = carData.map((car: any) => ({
           id: car.id,
+          slug: car.slug,
           name: `${car.make} ${car.model} ${car.year}`,
           image:
             car.image || "https://via.placeholder.com/400x300?text=No+Image",

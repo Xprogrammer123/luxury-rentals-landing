@@ -11,7 +11,7 @@ export const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center">
-           <img className='text-luxury-gold font-bold text-3xl' src="https://media-hosting.imagekit.io//6f89dfa036f24074/tpadride-removebg-preview.png?Expires=1832414585&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=IF6zkqNsFS86z1NUEjmJhC4lMzIDZn9LH0GhovNh00fqWAXRam37LIQxSSoDVGf74RLAi4WVQRIC9tSRoAgLiFiekh0K9ZOo2dVqCljSDxAgD8EUwW9S9RhvWo56aqb1nhfCbK1ezBF0f1czUxvW1x3Woy-l37w0eZDJNMKtkJPoKD8l3~6ebRvST4HqG9qqrof8kvyvX9oQnO2Z67fGjaVC~6ZuS768ibes3TO2AOwyk1xcSBf7jyZ3iHFnJJqSrPF6Oicg0yCBduiqRYh0V~SpeYTVUzLF5fuAu4tCePbJGbhjrcPjCJqA6Sk04D1Pqht-nMSCdKaIIf7kz5Yqiw__"/>
+           <img className='text-luxury-gold font-bold text-3xl' src="https://media-hosting.imagekit.io//6f89dfa036f24074/tpadride-removebg-preview.png?Expires=1832414585&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=IF6zkqNsFS86z1NUEjmJhC4lMzIDZn9LH0GhovNh00fqWAXRam37LIQxSSoDVGf74RLAi4WVQRIC9tSRoAgLiFiekh0K9ZOo2dVqCljSDxAgD8EUwW9S9RhvWo56aqb1nhfCbK1ezBF0f1czUxvW1x3Woy-l37w0eZDJNMKtkJPoKD8l3~6ebRvST4HqG9qqrof8kvyvX9oQnO2Z67fGjaVC~6ZuS768ibes3TO2AOwyk1xcSBf7jyZ3iHFnJJqSrPF6Oicg0yCBduiqRYh0V~SpeYTVUzLF5fuAu4tCePbJGbhjrcPjCJqA6Sk04D1Pqht-nMSCdKaIIf7kz5Yqiw__" alt="logo"/>
           </Link>
 
           {/* Desktop Navigation */}
